@@ -1,14 +1,14 @@
 package com.abhi.encapsulation.internal;
 
 public class Mutants {
-    private int Id=10;
+    private int id=10;
     private String name="abhishek";
     private String lastName="hubballi";
     private String mutantPower="wolverine";
     private String weapon="x-blade";
 
-    void setId(int Id){
-        this.Id=Id;
+    void setId(int id){
+        this.id=id;
     }
     void setName(String name){
         this.name=name;
