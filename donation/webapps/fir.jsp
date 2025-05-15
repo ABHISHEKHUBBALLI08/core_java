@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Donate</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -25,35 +27,14 @@
     }
 
     .donation-box {
-      background-color: grey;
+      background-color: rgba(128, 128, 128, 0.9);
       padding: 30px;
       border-radius: 15px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      width: 400px;
-    }
-
-    .donation-box input[type="text"],
-    .donation-box input[type="submit"] {
       width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-    }
-
-    .donation-box input[type="submit"] {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .donation-box input[type="submit"]:hover {
-      background-color: #218838;
+      max-width: 500px;
     }
   </style>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
@@ -67,20 +48,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
+          <a class="nav-link active" href="index.jsp">Home</a>
         </li>
         <li class="nav-item">
-                  <a class="nav-link active"  href="donation.jsp">Donation</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link active" href="license.jsp">License</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link active" href="feedback.jsp">Feed back</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link active" href="laboratory.jsp">Laboratory</a>
-                </li>
+          <a class="nav-link active" href="donation.jsp">Donation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="license.jsp">License</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="feedback.jsp">Feed back</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="laboratory.jsp">Laboratory</a>
+        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search">
@@ -90,7 +71,7 @@
   </div>
 </nav>
 
-<!-- Centered Donation Form -->
+<!-- Donation Form -->
 <div class="center-container">
   <div class="donation-box">
     <form action="fir" method="post">
@@ -116,7 +97,6 @@
       </div>
       <button type="submit" class="btn btn-success w-100">Get Details</button>
     </form>
-
   </div>
 </div>
 

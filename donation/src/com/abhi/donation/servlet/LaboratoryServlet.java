@@ -2,12 +2,17 @@ package com.abhi.donation.servlet;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebServlet(urlPatterns = "/lab")
-public class LaboratoryServlet extends GenericServlet {
-
+public class LaboratoryServlet extends HttpServlet {
+    public LaboratoryServlet(){
+        System.out.println("object created in laboratory");
+    }
     @Override
-    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         String name=servletRequest.getParameter("name");
         String phno=servletRequest.getParameter("phnumber");
         Long ph;
@@ -19,9 +24,14 @@ public class LaboratoryServlet extends GenericServlet {
         if(id!=null && id==""){
             iid=Long.parseLong(id);
         }
-        String police=servletRequest.getParameter("incharge");
+        System.out.println("request dispatcher running in laboratory ... ");
+        String incharge=servletRequest.getParameter("incharge");
         String location=servletRequest.getParameter("location");
-        System.out.println("request dispatcher running ... ");
+        servletRequest.setAttribute("name",name);
+        servletRequest.setAttribute("ph_no",phno);
+        servletRequest.setAttribute("id",id);
+        servletRequest.setAttribute("incharge",incharge);
+        servletRequest.setAttribute("location",location);
         RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("labJsp.jsp");
         requestDispatcher.forward(servletRequest,servletResponse);
     }
