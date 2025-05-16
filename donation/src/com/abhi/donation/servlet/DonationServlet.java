@@ -1,5 +1,7 @@
 package com.abhi.donation.servlet;
 
+import com.abhi.donation.dto.DonationDto;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,22 +18,18 @@ public class DonationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name=req.getParameter("name");
-        String phno=req.getParameter("phnumber");
-        Long ph;
-        if(phno!=null && phno==""){
-            ph=Long.parseLong(phno);
-        }
+        String phnumber=req.getParameter("phnumber");
         String amount=req.getParameter("amount");
-        Long amount1;
-        if(amount!=null && amount==""){
-            amount1=Long.parseLong(amount);
-        }
         String location=req.getParameter("location");
+        System.out.println("request running in Donation");
+        DonationDto donationDto=new DonationDto();
+        donationDto.setName(name);
+        donationDto.setPhnumber(phnumber);
+        donationDto.setAmount(amount);
+        donationDto.setLocation(location);
 
-        req.setAttribute("name",name);
-        req.setAttribute("ph_no",phno);
-        req.setAttribute("amount",amount);
-        req.setAttribute("location",location);
+        req.setAttribute("donationDto",donationDto);
+
         RequestDispatcher result=req.getRequestDispatcher("donationJsp.jsp");
         result.forward(req,resp);
     }

@@ -1,5 +1,7 @@
 package com.abhi.donation.servlet;
 
+import com.abhi.donation.dto.LaboratoryDto;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,24 +16,19 @@ public class LaboratoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         String name=servletRequest.getParameter("name");
-        String phno=servletRequest.getParameter("phnumber");
-        Long ph;
-        if(phno!=null && phno==""){
-            ph=Long.parseLong(phno);
-        }
+        String phnumber=servletRequest.getParameter("phnumber");
         String id=servletRequest.getParameter("id");
-        Long iid;
-        if(id!=null && id==""){
-            iid=Long.parseLong(id);
-        }
         System.out.println("request dispatcher running in laboratory ... ");
         String incharge=servletRequest.getParameter("incharge");
         String location=servletRequest.getParameter("location");
-        servletRequest.setAttribute("name",name);
-        servletRequest.setAttribute("ph_no",phno);
-        servletRequest.setAttribute("id",id);
-        servletRequest.setAttribute("incharge",incharge);
-        servletRequest.setAttribute("location",location);
+
+        LaboratoryDto laboratoryDto=new LaboratoryDto();
+        laboratoryDto.setName(name);
+        laboratoryDto.setPhnumber(phnumber);
+        laboratoryDto.setId(id);
+        laboratoryDto.setIncharge(incharge);
+        laboratoryDto.setLocation(location);
+        servletRequest.setAttribute("laboratoryDto",laboratoryDto);
         RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("labJsp.jsp");
         requestDispatcher.forward(servletRequest,servletResponse);
     }

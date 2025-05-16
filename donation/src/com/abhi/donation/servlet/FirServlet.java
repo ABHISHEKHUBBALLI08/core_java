@@ -1,5 +1,7 @@
 package com.abhi.donation.servlet;
 
+import com.abhi.donation.dto.FirDto;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,26 +15,20 @@ public class FirServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
-        System.out.println("request dispatcher running ... ");
+        System.out.println("request dispatcher running in FIR... ");
         String name=servletRequest.getParameter("name");
-        String phno=servletRequest.getParameter("phnumber");
-        Long ph;
-        if(phno!=null && phno==""){
-            ph=Long.parseLong(phno);
-        }
+        String phnumber=servletRequest.getParameter("phnumber");
         String fir=servletRequest.getParameter("fir");
-        Long firId;
-        if(fir!=null && fir==""){
-            firId=Long.parseLong(fir);
-        }
         String police=servletRequest.getParameter("police");
         String location=servletRequest.getParameter("location");
 
-        servletRequest.setAttribute("name",name);
-        servletRequest.setAttribute("ph_no",phno);
-        servletRequest.setAttribute("fir",fir);
-        servletRequest.setAttribute("police",police);
-        servletRequest.setAttribute("location",location);
+        FirDto firDto=new FirDto();
+        firDto.setName(name);
+        firDto.setPhnumber(phnumber);
+        firDto.setFir(fir);
+        firDto.setPolice(police);
+        firDto.setLocation(location);
+        servletRequest.setAttribute("firDto",firDto);
         RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("firJsp.jsp");
         requestDispatcher.forward(servletRequest,servletResponse);
 
