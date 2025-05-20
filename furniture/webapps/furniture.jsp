@@ -90,11 +90,11 @@
         </div>
     </div>
 </nav>
-
+<h1 style="color:white background-color:black">${message}</h1>
 <div class="main-container">
     <div class="form-container">
         <h1>Fill the form</h1>
-        <form>
+        <form action="furniture" method="post">
             <label>Brand</label>
             <input type="text" name="brand" required>
 
