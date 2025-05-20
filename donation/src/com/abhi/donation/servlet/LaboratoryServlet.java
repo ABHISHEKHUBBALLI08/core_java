@@ -1,6 +1,8 @@
 package com.abhi.donation.servlet;
 
 import com.abhi.donation.dto.LaboratoryDto;
+import com.abhi.donation.service.LabService;
+import com.abhi.donation.service.LabServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -28,8 +30,20 @@ public class LaboratoryServlet extends HttpServlet {
         laboratoryDto.setId(id);
         laboratoryDto.setIncharge(incharge);
         laboratoryDto.setLocation(location);
-        servletRequest.setAttribute("laboratoryDto",laboratoryDto);
-        RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("labJsp.jsp");
-        requestDispatcher.forward(servletRequest,servletResponse);
+
+        LabService labService=new LabServiceImpl();
+        boolean saved=labService.save(laboratoryDto);
+        if(saved){
+            servletRequest.setAttribute("laboratoryDto",laboratoryDto);
+            servletRequest.setAttribute("message", "Saving of lab details successfully");
+            RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("labJsp.jsp");
+            requestDispatcher.forward(servletRequest,servletResponse);
+        }else{
+            RequestDispatcher requestDispatcher =
+                    servletRequest.getRequestDispatcher("labJsp.jsp");
+            servletRequest.setAttribute("message", "Saving of lab details Failed");
+
+        }
+
     }
 }

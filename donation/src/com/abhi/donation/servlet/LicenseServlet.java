@@ -1,6 +1,8 @@
 package com.abhi.donation.servlet;
 
 import com.abhi.donation.dto.LicenseDto;
+import com.abhi.donation.service.LicenseService;
+import com.abhi.donation.service.LicenseServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -28,8 +30,19 @@ public class LicenseServlet extends HttpServlet {
         licenseDto.setLicenseId(licenseId);
         licenseDto.setPersonName(personName);
         licenseDto.setPersonLocation(personLocation);
-        servletRequest.setAttribute("licenseDto",licenseDto);
-        RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("licenseJsp.jsp");
-        requestDispatcher.forward(servletRequest,servletResponse);
+
+        LicenseService licenseService=new LicenseServiceImpl();
+        boolean saved=licenseService.save(licenseDto);
+        if(saved){
+            servletRequest.setAttribute("licenseDto",licenseDto);
+            servletRequest.setAttribute("message", "Saving of license details successfully");
+            RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("licenseJsp.jsp");
+            requestDispatcher.forward(servletRequest,servletResponse);
+        }else{
+            RequestDispatcher requestDispatcher =
+                    servletRequest.getRequestDispatcher("licenseJsp.jsp");
+            servletRequest.setAttribute("message", "Saving of license details Failed");
+        }
+
     }
 }

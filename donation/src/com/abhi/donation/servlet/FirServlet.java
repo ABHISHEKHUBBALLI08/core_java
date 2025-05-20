@@ -1,6 +1,8 @@
 package com.abhi.donation.servlet;
 
 import com.abhi.donation.dto.FirDto;
+import com.abhi.donation.service.FirService;
+import com.abhi.donation.service.FirServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -28,9 +30,21 @@ public class FirServlet extends HttpServlet {
         firDto.setFir(fir);
         firDto.setPolice(police);
         firDto.setLocation(location);
-        servletRequest.setAttribute("firDto",firDto);
-        RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("firJsp.jsp");
-        requestDispatcher.forward(servletRequest,servletResponse);
+
+        FirService  firService=new FirServiceImpl();
+        boolean saved=firService.save(firDto);
+        if(saved){
+            servletRequest.setAttribute("firDto",firDto);
+            servletRequest.setAttribute("message", "Saving of fir details successfully");
+            RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("firJsp.jsp");
+            requestDispatcher.forward(servletRequest,servletResponse);
+        }else {
+            RequestDispatcher requestDispatcher =
+                    servletRequest.getRequestDispatcher("firJsp.jsp");
+            servletRequest.setAttribute("message", "Saving of fir details Failed");
+
+        }
+
 
     }
 }

@@ -1,6 +1,8 @@
 package com.abhi.donation.servlet;
 
 import com.abhi.donation.dto.DonationDto;
+import com.abhi.donation.service.DonationService;
+import com.abhi.donation.service.DonationServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -28,9 +30,23 @@ public class DonationServlet extends HttpServlet {
         donationDto.setAmount(amount);
         donationDto.setLocation(location);
 
-        req.setAttribute("donationDto",donationDto);
+        DonationService donationService=new DonationServiceImpl();
+        boolean saved =donationService.save(donationDto);
+        if(saved){
 
-        RequestDispatcher result=req.getRequestDispatcher("donationJsp.jsp");
-        result.forward(req,resp);
+            RequestDispatcher result=req.getRequestDispatcher("donationJsp.jsp");
+            req.setAttribute("donationDto",donationDto);
+            req.setAttribute("message", "Saving of donation details successfully");
+            result.forward(req,resp);
+
+        }
+        else{
+            RequestDispatcher dispatcher =
+                    req.getRequestDispatcher("donationJsp.jsp");
+            req.setAttribute("message", "Saving of donation details Failed");
+        }
+
+
+
     }
 }

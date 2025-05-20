@@ -11,6 +11,7 @@
   <div class="text-center mb-4">
     <h1 class="display-5 text-success">FIR Details Submitted Successfully!</h1>
     <p class="lead">Here's the summary of your submission:</p>
+    <h1>${message}</h1>
   </div>
 
   <table class="table table-bordered table-hover table-striped">

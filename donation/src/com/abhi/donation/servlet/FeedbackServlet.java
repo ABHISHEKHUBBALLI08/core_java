@@ -1,6 +1,8 @@
 package com.abhi.donation.servlet;
 
 import com.abhi.donation.dto.FeedbackDto;
+import com.abhi.donation.service.FeedbackService;
+import com.abhi.donation.service.FeedbackServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -28,9 +30,19 @@ public class FeedbackServlet extends HttpServlet {
         feedbackDto.setId(id);
         feedbackDto.setName(name);
         feedbackDto.setLocation(location);
-        servletRequest.setAttribute("feedbackDto",feedbackDto);
 
-        RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("feedbackJsp.jsp");
-        requestDispatcher.forward(servletRequest,servletResponse);
+        FeedbackService feedbackService=new FeedbackServiceImpl();
+        boolean saved=feedbackService.save(feedbackDto);
+        if(saved){
+            servletRequest.setAttribute("feedbackDto",feedbackDto);
+            servletRequest.setAttribute("message", "Saving of feedback details successfully");
+            RequestDispatcher requestDispatcher= servletRequest.getRequestDispatcher("feedbackJsp.jsp");
+            requestDispatcher.forward(servletRequest,servletResponse);
+        }else{
+            RequestDispatcher requestDispatcher =
+                    servletRequest.getRequestDispatcher("feedbackJsp.jsp");
+            servletRequest.setAttribute("message", "Saving of feedback details Failed");
+        }
+
     }
 }
