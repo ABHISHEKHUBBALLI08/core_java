@@ -1,6 +1,8 @@
 package com.abhi.toy.service;
 
 import com.abhi.toy.dto.ToyDto;
+import com.abhi.toy.repository.ToyRepository;
+import com.abhi.toy.repository.ToyRepositoryImpl;
 
 public class ToyServiceImpl implements ToyService{
     @Override
@@ -105,8 +107,9 @@ public class ToyServiceImpl implements ToyService{
         }else {
             System.out.println("toy is null");
         }
-
+        ToyRepository toyRepository=new ToyRepositoryImpl();
+        boolean saved=toyRepository.persist(toyDto);
         System.out.println("saved successfully");
-        return true;
+        return saved;
     }
 }
