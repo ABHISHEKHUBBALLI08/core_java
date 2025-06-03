@@ -49,10 +49,12 @@ public class ToyServlet extends HttpServlet {
         boolean saved=toyService.save(toyDto);
         if(saved){
             req.setAttribute("toyDto",toyDto);
+            req.setAttribute("msg","save successfully");
             RequestDispatcher requestDispatcher=req.getRequestDispatcher("ToySuccess.jsp");
             requestDispatcher.forward(req,resp);
         }else {
             req.setAttribute("message","failed to save");
+            req.setAttribute("msg","failed to save");
             RequestDispatcher requestDispatcher=req.getRequestDispatcher("toy.jsp");
             requestDispatcher.forward(req,resp);
         }

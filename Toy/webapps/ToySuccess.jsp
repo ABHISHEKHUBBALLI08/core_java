@@ -53,6 +53,7 @@ ToyDto toy = (ToyDto) request.getAttribute("toyDto");
         </div>
     </div>
 </nav>
+<h1>${msg}</h1>
 <div class="table-container">
     <h2 class="text-center mb-4 text-primary">Toy Details Submitted Successfully</h2>
     <table class="table table-bordered table-striped">

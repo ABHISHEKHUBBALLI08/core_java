@@ -46,6 +46,7 @@
     </div>
 </nav>
 <h1>${message}</h1>
+<h1>${msg}</h1>
 <!-- Centered Form -->
 <div class="form-container">
     <h3 class="text-center mb-4">Add Toy Details</h3>
