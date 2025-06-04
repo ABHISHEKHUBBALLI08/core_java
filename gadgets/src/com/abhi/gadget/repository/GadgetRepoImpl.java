@@ -10,6 +10,6 @@ public class GadgetRepoImpl implements GadgetRepo{
         }else {
             System.out.println("gadget is null");
         }
-        return false;
+        return true;
     }
 }

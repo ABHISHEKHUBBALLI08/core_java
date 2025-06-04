@@ -63,6 +63,7 @@
         <option value="Electronics">Electronics</option>
         <option value="Clothing">Clothing</option>
         <option value="Books">Books</option>
+        <option value="toys">toys</option>
         <option value="Home">Home</option>
     </select>
 

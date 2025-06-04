@@ -1,7 +1,6 @@
 package com.abhi.gadget.servlet;
 
 import com.abhi.gadget.dto.GadgetDto;
-import com.abhi.gadget.runner.GadgetDetails;
 import com.abhi.gadget.service.ProductService;
 import com.abhi.gadget.service.ProductServiceImpl;
 
